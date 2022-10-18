@@ -2,9 +2,14 @@
   div.classList.add("container")
   document.body.appendChild(div)
 
-  let minus = document.createElement('button')
-  minus.innerHTML = '-'
-  minus.classList.add("butt")
+  function createButton (textInside) {
+    let elem = document.createElement('button')
+    elem.innerHTML = textInside
+    elem.classList.add('butt')
+    return elem
+  }
+
+  let minus = createButton('-')
   div.appendChild(minus)
 
   let counter = document.createElement('p')
@@ -12,14 +17,10 @@
   counter.classList.add("number")
   div.appendChild(counter)
 
-  let plus = document.createElement('button')
-  plus.innerHTML = '+'
-  plus.classList.add("butt")
+  let plus = createButton('+')
   div.appendChild(plus)
 
-  let reset = document.createElement('button')
-  reset.innerHTML = 'reset'
-  reset.classList.add("butt")
+  let reset = createButton('reset')
   reset.classList.add("res")
   document.body.appendChild(reset)
 
@@ -31,7 +32,7 @@
   }
 
   function subOne () {
-    if(n == 0) return
+    if(n === 0) return
     n--
     counter.innerHTML = n
   }
