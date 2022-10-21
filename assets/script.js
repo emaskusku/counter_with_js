@@ -1,27 +1,26 @@
-  let div = document.createElement("div")
-  div.classList.add("container")
-  document.body.appendChild(div)
-
-  function createButton (textInside) {
-    let elem = document.createElement('button')
+  function createThings (tag, textInside, ...classes) {
+    let elem = document.createElement(tag)
     elem.innerHTML = textInside
-    elem.classList.add('butt')
+
+    for(const el of classes){
+      elem.classList.add(el)
+    }
     return elem
   }
 
-  let minus = createButton('-')
+  let div = createThings('div', '', 'container')
+  document.body.appendChild(div)
+
+  let minus = createThings('button','-', 'butt')
   div.appendChild(minus)
 
-  let counter = document.createElement('p')
-  counter.innerHTML = '0'
-  counter.classList.add("number")
+  let counter = createThings('p', '0', 'number')
   div.appendChild(counter)
 
-  let plus = createButton('+')
+  let plus = createThings('button','+', 'butt')
   div.appendChild(plus)
 
-  let reset = createButton('reset')
-  reset.classList.add("res")
+  let reset = createThings('button','reset', 'butt', 'res')
   document.body.appendChild(reset)
 
   let n = 0;
@@ -42,6 +41,13 @@
     counter.innerHTML = 0
   }
 
-  minus.addEventListener('click', subOne)
-  plus.addEventListener('click', addOne)
-  reset.addEventListener('click', toZero)
+  document.body.addEventListener('click', function (event) {
+    if(event.target === plus){
+      addOne()
+    } else if (event.target === minus){
+      subOne()
+    } else if (event.target === reset){
+      toZero()
+    }
+
+  })
